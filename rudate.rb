@@ -170,8 +170,12 @@ if __FILE__ == $0
     fun = :numeric_date
     ARGV.shift
   end
-
+  
+  begin
   ARGF.each_line do |line|
     puts line.gsub(/(\d{4})-(\d{2})-(\d{2})/) { |m| fun.to_proc.call(nil, $3.to_i, $2.to_i, $1.to_i, cse) }
+  end
+  rescue => e
+    STDERR.puts e; exit 2
   end
 end
