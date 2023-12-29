@@ -68,6 +68,7 @@ end
 def year(y)
   out = []
   case y / 1000
+  when 0
   when 1
     out << "тысяча"
   when 2
