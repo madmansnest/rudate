@@ -79,7 +79,10 @@ def tens(n, gender)
     when 9
       'девяносто'
     end
-    out << ' ' << ones(n%10, gender) unless n%10==0
+    unless n%10==0
+      out << ' ' << ones(n%10, gender) 
+    end
+    out
   else
     raise "tens() called with improper value: #{n}"
   end
@@ -110,7 +113,9 @@ def hundreds(n, gender)
     when 9
       'девятьсот'
     end
-    out << ' ' << tens(n%100, gender) unless n%100==0
+    unless n%100==0
+      out << ' ' << tens(n%100, gender).to_s
+    end
   else
     raise "hundreds() called with improper value: #{n}"
   end
@@ -192,8 +197,7 @@ if __FILE__ == $0
       puts line.gsub(/(\d+)/) { |m| number($1.to_i)}
   end
   rescue => e
-    # STDERR.puts e; exit 2
-    raise e
+    STDERR.puts e; exit 2
   end
 end
 
