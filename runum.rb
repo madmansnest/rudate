@@ -145,12 +145,14 @@ def cls(i, nn)
   end
 end
 
-def number(n)
+def number(n, gender)
   out = []
   i = 0
   while n/1000**i>0
     nn = n/1000**i % 1000
-    if i==1
+    case i
+    when 0
+    when 1
       gender=:f
     else
       gender=:m
@@ -194,7 +196,7 @@ if __FILE__ == $0
   
   begin
   ARGF.each_line do |line|
-      puts line.gsub(/(\d+)/) { |m| number($1.to_i)}
+      puts line.gsub(/(\d+)/) { |m| number($1.to_i, gender)}
   end
   rescue => e
     STDERR.puts e; exit 2
