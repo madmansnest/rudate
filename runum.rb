@@ -160,7 +160,11 @@ def number(n, gender)
     out = [hundreds(nn, gender), cls(i, nn)].concat(out)
     i += 1
   end
-  out.compact.join(' ')
+  if out.size==0
+    'нуль'
+  else
+    out.compact.join(' ')
+  end
 end
 
 if __FILE__ == $0
